@@ -20,7 +20,7 @@ import { HiPencilAlt } from "react-icons/hi";
 // };
 
 export default async function PeopleList() {
-  const { people } = await getPeople();
+  //const { people } = await getPeople();
   return (
     <section>
       {/* <div className="container mx-auto">
