@@ -1,4 +1,4 @@
-import EditPersonForm from "@/components/EditpersonForm";
+import EditPersonForm from "@/components/EditPersonForm";
 
 const getPersonById = async (id) => {
   const apiUrl = process.env.API_URL;
