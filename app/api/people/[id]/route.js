@@ -4,9 +4,21 @@ import { NextResponse } from "next/server";
 
 export async function PUT(request, { params }) {
   const { id } = params;
-  const { newFullName: fullname, newCI: ci } = await request.json();
+  const {
+    newFullName: fullname,
+    newCI: ci,
+    newAddress: address,
+    newContact: contact,
+    newClassification: classification,
+  } = await request.json();
   await connectMongoDB();
-  await Person.findByIdAndUpdate(id, { fullname, ci });
+  await Person.findByIdAndUpdate(id, {
+    fullname,
+    ci,
+    address,
+    contact,
+    classification,
+  });
   return NextResponse.json({ message: "Person updated" }, { status: 200 });
 }
 

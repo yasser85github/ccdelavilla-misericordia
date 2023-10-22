@@ -4,6 +4,9 @@ const personSchema = new Schema(
   {
     fullname: String,
     ci: String,
+    address: String,
+    contact: String,
+    classification: String,
   },
   {
     timestamps: true,

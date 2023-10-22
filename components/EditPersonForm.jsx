@@ -3,9 +3,19 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function EditPersonForm({ id, fullname, ci }) {
+export default function EditPersonForm({
+  id,
+  fullname,
+  ci,
+  address,
+  contact,
+  classification,
+}) {
   const [newFullName, setNewFullName] = useState(fullname);
   const [newCI, setNewCI] = useState(ci);
+  const [newAddress, setNewAddress] = useState(address);
+  const [newContact, setNewContact] = useState(contact);
+  const [newClassification, setNewClassification] = useState(classification);
 
   const router = useRouter();
 
@@ -17,11 +27,17 @@ export default function EditPersonForm({ id, fullname, ci }) {
       const res = await fetch(`/api/people/${id}`, {
         method: "PUT",
         headers: { "Content-type": "application/json" },
-        body: JSON.stringify({ newFullName, newCI }),
+        body: JSON.stringify({
+          newFullName,
+          newCI,
+          newAddress,
+          newContact,
+          newClassification,
+        }),
       });
 
       if (!res.ok) {
-        throw new Error("Failed to update Person");
+        throw new Error("Falló al actualizar Persona");
       }
 
       router.refresh();
@@ -43,12 +59,39 @@ export default function EditPersonForm({ id, fullname, ci }) {
         }}
       />
       <input
-        type="text"
+        type="number"
         className="border border-slate-500 px-8 py-2"
         placeholder="Carnet de Identidad"
         value={newCI}
         onChange={(e) => {
           setNewCI(e.target.value);
+        }}
+      />
+      <input
+        type="text"
+        className="border border-slate-500 px-8 py-2"
+        placeholder="Dirección"
+        value={newAddress}
+        onChange={(e) => {
+          setNewAddress(e.target.value);
+        }}
+      />
+      <input
+        type="tel"
+        className="border border-slate-500 px-8 py-2"
+        placeholder="Contacto"
+        value={newContact}
+        onChange={(e) => {
+          setNewContact(e.target.value);
+        }}
+      />
+      <input
+        type="text"
+        className="border border-slate-500 px-8 py-2"
+        placeholder="Clasificación"
+        value={newClassification}
+        onChange={(e) => {
+          setNewClassification(e.target.value);
         }}
       />
       <button className="bg-green-600 font-bold text-white py-3 px-6 w-fit">

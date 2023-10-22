@@ -6,13 +6,16 @@ import { useRouter } from "next/navigation";
 const AddPerson = () => {
   const [fullname, setFullName] = useState("");
   const [ci, setCI] = useState("");
+  const [address, setAddress] = useState("");
+  const [contact, setContact] = useState("");
+  const [classification, setClassification] = useState("");
+
   const router = useRouter();
 
   const handleSubmit = async (e) => {
-    console.log("Hello");
     e.preventDefault();
 
-    if (!fullname || !ci) {
+    if (!fullname) {
       alert("Datos incompletos");
       return;
     }
@@ -23,13 +26,19 @@ const AddPerson = () => {
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify({ fullname, ci }),
+        body: JSON.stringify({
+          fullname,
+          ci,
+          address,
+          contact,
+          classification,
+        }),
       });
       if (res.ok) {
         router.refresh();
         router.push("/");
       } else {
-        throw new Error("Failed to create a topic");
+        throw new Error("Falló al crear una nueva Persona");
       }
     } catch (error) {
       console.log(error);
@@ -48,9 +57,30 @@ const AddPerson = () => {
       <input
         onChange={(e) => setCI(e.target.value)}
         value={ci}
-        type="text"
+        type="number"
         className="border border-slate-500 px-8 py-2"
         placeholder="Carnet de Identidad"
+      />
+      <input
+        onChange={(e) => setAddress(e.target.value)}
+        value={address}
+        type="text"
+        className="border border-slate-500 px-8 py-2"
+        placeholder="Dirección"
+      />
+      <input
+        onChange={(e) => setContact(e.target.value)}
+        value={contact}
+        type="tel"
+        className="border border-slate-500 px-8 py-2"
+        placeholder="Contacto"
+      />
+      <input
+        onChange={(e) => setClassification(e.target.value)}
+        value={classification}
+        type="tel"
+        className="border border-slate-500 px-8 py-2"
+        placeholder="Clasificación"
       />
       <button
         type="submit"

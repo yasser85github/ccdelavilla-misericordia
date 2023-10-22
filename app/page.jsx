@@ -1,7 +1,3 @@
-import RemoveBtn from "@/components/RemoveBtn";
-import Link from "next/link";
-import { HiPencilAlt } from "react-icons/hi";
-
 import Person from "@/components/Person";
 
 const getPeople = async () => {
@@ -30,7 +26,6 @@ export default async function PeopleList() {
           ))}
         </div>
       </div>
-      Hello
     </section>
   );
 }

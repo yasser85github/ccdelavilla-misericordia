@@ -3,9 +3,10 @@ import Person from "@/models/person";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
-  const { fullname, ci } = await request.json();
+  const { fullname, ci, address, contact, classification } =
+    await request.json();
   await connectMongoDB();
-  await Person.create({ fullname, ci });
+  await Person.create({ fullname, ci, address, contact, classification });
   return NextResponse.json({ message: "Person Created" }, { status: 201 });
 }
 

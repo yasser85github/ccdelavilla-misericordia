@@ -20,8 +20,17 @@ const getPersonById = async (id) => {
 const EditPerson = async ({ params }) => {
   const { id } = params;
   const { person } = await getPersonById(id);
-  const { fullname, ci } = person;
-  return <EditPersonForm id={id} fullname={fullname} ci={ci} />;
+  const { fullname, ci, address, contact, classification } = person;
+  return (
+    <EditPersonForm
+      id={id}
+      fullname={fullname}
+      ci={ci}
+      address={address}
+      contact={contact}
+      classification={classification}
+    />
+  );
 };
 
 export default EditPerson;

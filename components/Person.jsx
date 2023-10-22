@@ -37,6 +37,12 @@ export default function Person({ person }) {
           </Link>
         </div>
       </div>
+
+      <div className="text-white">
+        <p>{person.ci}</p>
+        <p>{person.address}</p>
+        <p>{person.contact}</p>
+      </div>
     </div>
   );
 }
